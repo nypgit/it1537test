@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemberDAO {
 
@@ -30,11 +32,13 @@ public class MemberDAO {
 			int maxId = rs1.getInt(1);
 			System.out.println(maxId);
 			int nextId = maxId + 1;
-			String memberId = "S" + Integer.toString(nextId);
+
 			String query1 = "insert into memberids values(?)";
 			pstmt1 = currentCon.prepareStatement(query1);
 			pstmt1.setInt(1, nextId);
 			pstmt1.executeUpdate();
+			
+			String memberId = "S" + Integer.toString(nextId);
 			member.setMemberId(memberId);
             System.out.println("New Member ID = " + memberId);
             // query for inserting into the table
@@ -118,4 +122,51 @@ public class MemberDAO {
 		return  member;
 	}
 	
+	public static ArrayList<Member> retrieveAll() {
+		Member member = null;
+		Statement stmt = null;
+        String searchQuery = "select * from member";
+        ArrayList<Member> memberList = new ArrayList<Member>();
+        try {
+            // connect to DB
+            currentCon = DBConnectionManager.getConnection();
+            stmt = currentCon.createStatement();
+            rs = stmt.executeQuery(searchQuery);
+            while (rs.next()) {
+            
+                String memberId = rs.getString("member_id");
+                String memberName = rs.getString("name");
+                String memberTel = rs.getString("tel");
+                member = new Member();
+                member.setMemberId(memberId);
+                member.setName(memberName);
+                member.setTel(memberTel);
+                memberList.add(member);
+            }
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+
+		return  memberList;
+	}
+	
 }
+
+
+/*** 
+ * 
+ * 
+ *  Member member = new Member();
+ *  String name = txtbox.getText();
+ *  member.setName(name);
+ *  member.setTel(tel);
+ *  
+ *  MemberDAO.register(member);
+ *  
+ *  
+ *
+ * 
+ * 
+ * 
+ * 
+ */

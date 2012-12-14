@@ -1,7 +1,10 @@
 package it1537.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import it1537.entities.Member;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -19,4 +22,12 @@ public class MemberDAOTest {
 		assertTrue(member2.getTel().equals("91123333"));
 	}
 
+
+	@Test
+	public void testRetrieveAll() {
+		List<Member> memberList =  MemberDAO.retrieveAll();
+		for (Member member:memberList) {
+			System.out.println(member.getMemberId() + "," + member.getName() + "," + member.getTel());
+		}
+	}
 }
