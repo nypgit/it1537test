@@ -42,12 +42,14 @@ public class MemberDAO {
 			member.setMemberId(memberId);
             System.out.println("New Member ID = " + memberId);
             // query for inserting into the table
-            String query = "insert into Member(member_id,name, tel) values(?,?,?)";
+            String query = "insert into Member(member_id,name, tel,username,password) values(?,?,?,?,?)";
             pstmt = currentCon.prepareStatement(query);
             // inserting values
             pstmt.setString(1,member.getMemberId());
             pstmt.setString(2,member.getName());
             pstmt.setString(3, member.getTel());  
+            pstmt.setString(4,member.getUsername());
+            pstmt.setString(5, member.getPassword());
             pstmt.executeUpdate();
             
 		} catch (Exception ex) {
@@ -110,10 +112,53 @@ public class MemberDAO {
                 String memberId = rs.getString("member_id");
                 String memberName = rs.getString("name");
                 String memberTel = rs.getString("tel");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
                 member = new Member();
                 member.setMemberId(memberId);
                 member.setName(memberName);
                 member.setTel(memberTel);
+                member.setUsername(username);
+                member.setPassword(password);
+            }
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+
+		return  member;
+	}
+	
+	public static Member searchByUsername(String uname) {
+		Member member = null;
+		Statement stmt = null;
+        String searchQuery = "select * from member where username ='"
+                + uname + "' ";
+
+        try {
+            // connect to DB
+            currentCon = DBConnectionManager.getConnection();
+            stmt = currentCon.createStatement();
+            rs = stmt.executeQuery(searchQuery);
+            boolean more = rs.next();
+
+            // if user does not exist set the isValid variable to false
+            if (!more) {
+              System.out.println("member with the username = " + uname + " does not exst");
+            }
+
+            // if user exists set the isValid variable to true
+            else if (more) {
+                String memberId = rs.getString("member_id");
+                String memberName = rs.getString("name");
+                String memberTel = rs.getString("tel");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                member = new Member();
+                member.setMemberId(memberId);
+                member.setName(memberName);
+                member.setTel(memberTel);
+                member.setUsername(username);
+                member.setPassword(password);
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -137,10 +182,14 @@ public class MemberDAO {
                 String memberId = rs.getString("member_id");
                 String memberName = rs.getString("name");
                 String memberTel = rs.getString("tel");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
                 member = new Member();
                 member.setMemberId(memberId);
                 member.setName(memberName);
                 member.setTel(memberTel);
+                member.setUsername(username);
+                member.setPassword(password);
                 memberList.add(member);
             }
         } catch (Exception e) {
@@ -153,20 +202,3 @@ public class MemberDAO {
 }
 
 
-/*** 
- * 
- * 
- *  Member member = new Member();
- *  String name = txtbox.getText();
- *  member.setName(name);
- *  member.setTel(tel);
- *  
- *  MemberDAO.register(member);
- *  
- *  
- *
- * 
- * 
- * 
- * 
- */

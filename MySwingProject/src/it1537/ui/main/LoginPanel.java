@@ -1,5 +1,8 @@
 package it1537.ui.main;
 
+import it1537.dao.MemberDAO;
+import it1537.entities.Member;
+
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -98,9 +101,14 @@ public class LoginPanel extends JPanel implements ActionListener {
 	}
 
 	private boolean checkLogin(String username, String password) {
-		if (username.equals("mkk"))
-			return true;
-		else 
+		// use memberDao to retrieve username and password
+		Member member = MemberDAO.searchByUsername(username);
+		if (member != null) {
+			String pwd = member.getPassword();
+			if (pwd.equals(password)) 
+				return true;
+		
+		} 
 		return false;
 	}
 	

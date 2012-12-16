@@ -13,13 +13,17 @@ public class MemberDAOTest {
 	@Test
 	public void testRegister() {
 		Member member = new Member();
-		member.setName("Lim Ah Kok");
+		member.setName("user3");
 		member.setTel("91123333");
+		member.setUsername("user3");
+		member.setPassword("password3");
 		MemberDAO.register(member);
 		assertTrue(member.getMemberId()!=null);
-		Member member2 = MemberDAO.searchByName("Lim Ah Kok");
-		assertTrue(member2.getName().equals("Lim Ah Kok"));
+		Member member2 = MemberDAO.searchByName("user3");
+		assertTrue(member2.getName().equals("user3"));
 		assertTrue(member2.getTel().equals("91123333"));
+		assertTrue(member2.getUsername().equals("user3"));
+		assertTrue(member2.getPassword().equals("password3"));
 	}
 
 
@@ -29,5 +33,13 @@ public class MemberDAOTest {
 		for (Member member:memberList) {
 			System.out.println(member.getMemberId() + "," + member.getName() + "," + member.getTel());
 		}
+	}
+	
+	@Test
+	public void testRetrieveByUsername() {
+		String uname = "user3";
+		Member member = MemberDAO.searchByUsername(uname);
+		assertTrue(member.getName().equals("user3"));
+		
 	}
 }
