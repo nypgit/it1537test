@@ -1,9 +1,3 @@
---<ScriptOptions statementTerminator=";"/>
-
-ALTER TABLE memberids DROP PRIMARY KEY;
-
-ALTER TABLE member DROP PRIMARY KEY;
-
 DROP TABLE memberids;
 
 DROP TABLE member;
