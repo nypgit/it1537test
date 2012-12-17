@@ -9,23 +9,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MainPanel extends JPanel {
+public class MainPanel extends ParentPanel {
 	
-	private  MainFrame parent = null;
+	
 	
 	public MainPanel(MainFrame frame) {
-		parent = frame;
-		setBounds(new Rectangle(0, 0, 800, 600));
-		setLayout(null);
+		super(frame);
 		
 		JLabel lblMainPanel = new JLabel("Main Panel");
 		lblMainPanel.setBounds(99, 95, 125, 16);
 		add(lblMainPanel);
 		
-		JButton btnHome = new JButton("Home");
+		JButton btnHome = new JButton("Back");
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JPanel panel = (JPanel) parent.getContentPane();
+				JPanel panel = (JPanel) parentFrame.getContentPane();
 				CardLayout cardLayout = (CardLayout) panel.getLayout();
 				cardLayout.show(panel, MainFrame.LOGINPANEL);
 				
@@ -34,7 +32,18 @@ public class MainPanel extends JPanel {
 		
 		btnHome.setBounds(80, 147, 117, 29);
 		add(btnHome);
-		// TODO Auto-generated constructor stub
+		
+		JButton btnNext = new JButton("Next");
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JPanel panel = (JPanel) parentFrame.getContentPane();
+				CardLayout cardLayout = (CardLayout) panel.getLayout();
+				cardLayout.show(panel, MainFrame.TABLEPANEL);
+			}
+		});
+		btnNext.setBounds(206, 147, 117, 29);
+		add(btnNext);
+		
 	}
 
 

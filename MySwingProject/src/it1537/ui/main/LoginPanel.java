@@ -22,28 +22,20 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import java.awt.Rectangle;
 
-public class LoginPanel extends JPanel implements ActionListener {
+public class LoginPanel extends ParentPanel implements ActionListener {
 	private JTextField textField;
 	private JPasswordField passwordField;
-	private ImageIcon imageIcon;
+	
 	private JLabel errorMessage;
-	private JFrame parentFrame; 
+	
 
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel(JFrame frame) {
-		setBounds(new Rectangle(0, 0, 800, 600));
+	public LoginPanel(MainFrame frame) {
 		
-		parentFrame = frame;
+		super(frame);
 		
-		try
-		{
-		 imageIcon = new ImageIcon( "image/winter3.jpg" );
-		}
-		catch(Exception e){
-			
-		}
 	
 		setLayout(null);
 		

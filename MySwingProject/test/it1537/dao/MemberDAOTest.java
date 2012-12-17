@@ -42,4 +42,20 @@ public class MemberDAOTest {
 		assertTrue(member.getName().equals("user3"));
 		
 	}
+
+	@Test
+	public void testBulkRegister() {
+
+		Member member = new Member();
+
+		for (int i = 4; i < 20; i++) {
+			member.setName("user" + i);
+			member.setTel("91123333");
+			member.setUsername("user" + i);
+			member.setPassword("pass" + i);
+			MemberDAO.register(member);
+			assertTrue(member.getMemberId() != null);
+		}
+	}
+
 }

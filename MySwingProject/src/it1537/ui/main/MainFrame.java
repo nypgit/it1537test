@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
 
 	public static final String LOGINPANEL = "LOGIN";
 	public static final String MAINPANEL = "MAIN";
+	public static final String TABLEPANEL = "TABLE";
 	private JPanel contentPane;
 
 	/**
@@ -38,6 +39,8 @@ public class MainFrame extends JFrame {
 		frame.getContentPane().add(loginPanel, LOGINPANEL);
 		MainPanel mainPanel = new MainPanel(frame);
 		frame.getContentPane().add(mainPanel, MAINPANEL);
+		TablePanel tablePanel = new TablePanel(frame);
+		frame.getContentPane().add(tablePanel, TABLEPANEL);
 		JPanel content = (JPanel)frame.getContentPane();
 		CardLayout c1 = (CardLayout)frame.getContentPane().getLayout();
 		c1.show(content, LOGINPANEL);
