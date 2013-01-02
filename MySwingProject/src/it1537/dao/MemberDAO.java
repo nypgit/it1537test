@@ -11,6 +11,7 @@ import java.util.List;
 
 public class MemberDAO {
 
+	// added in comments 
 	static Connection currentCon = null;
 	static ResultSet rs = null;
 	static PreparedStatement pstmt = null;
