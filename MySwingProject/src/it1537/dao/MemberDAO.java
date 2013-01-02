@@ -17,6 +17,8 @@ public class MemberDAO {
 	static ResultSet rs1 = null;
 	static PreparedStatement pstmt1 = null;
 
+	
+	// added in another comment to test conflict
 	public static Member register(Member member) {
 		
 		Statement stmt = null;
