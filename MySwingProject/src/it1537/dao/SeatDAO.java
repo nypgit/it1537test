@@ -5,11 +5,7 @@ import it1537.entities.Seat;
 
 public class SeatDAO {
 	// added method
-	public void addSeat(Seat seat) {
-		
-	}
-	
-	public void add() {
+	public void add(Seat seat) {
 		
 	}
 }
