@@ -1,7 +1,14 @@
 package it1537.dao;
 
+import it1537.entities.Seat;
+
+
 public class SeatDAO {
-   // added a method 
+	// added method
+	public void addSeat(Seat seat) {
+		
+	}
+	
 	public void add() {
 		
 	}
