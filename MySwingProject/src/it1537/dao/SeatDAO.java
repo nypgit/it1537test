@@ -1,5 +1,10 @@
 package it1537.dao;
 
-public class SeatDAO {
+import it1537.entities.Seat;
 
+public class SeatDAO {
+	// added method
+	public void addSeat(Seat seat) {
+		
+	}
 }
